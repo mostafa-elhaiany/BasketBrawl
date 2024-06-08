@@ -37,7 +37,6 @@ def handle_keyboard_control(player, opponent, idx):
     player.play_card(idx, opponent)
 
 def handle_click(player, opponent, pos, Global):
-    # print(pos)
     y_offset = 20
     for i, _ in enumerate(player.hand):
         card_rect = pygame.Rect(Global.p1_card_x, y_offset, Global.card_width, Global.card_height)

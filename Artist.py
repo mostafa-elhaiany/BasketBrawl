@@ -85,13 +85,7 @@ class Artist:
                 self.draw_text(card.name, (0, 0, 0), x + 10, y + 10, 0)
 
     def draw_text(self,text, color, x, y, rotation):
-        
         animated_text = AnimatedText(text, (x,y),42,color, rotation)
         animated_text.update()
         animated_text.draw(self.Global.screen)
         return animated_text
-        # textobj = font.render(text, True, color)
-        # textobj = pygame.transform.rotate(textobj, rotation)
-        # textrect = textobj.get_rect()
-        # textrect.topleft = (x, y)
-        # surface.blit(textobj, textrect)
