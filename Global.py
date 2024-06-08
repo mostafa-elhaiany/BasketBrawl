@@ -18,3 +18,7 @@ player2 = Player("Player 2")
 card_width = 200
 card_height = 140
 card_offset = 150
+
+
+player1_texts = []
+player2_texts = []

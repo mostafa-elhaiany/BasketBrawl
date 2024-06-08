@@ -12,6 +12,7 @@ def handle_actions(Global):
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_q:
                 Global.player1.points +=1
+                Global.player1_texts[0].animate((0,255,0))
             if event.key == pygame.K_p:
                 Global.player2.points +=1
 
