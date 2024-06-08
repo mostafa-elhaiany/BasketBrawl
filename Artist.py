@@ -38,12 +38,9 @@ def draw_screen(Global):
 def draw_card(screen, font, card, x, y, w, h, rotation):
     card_rect = pygame.Rect(x, y, w, h)
     if not card.played:
-        #TODO replace with card.draw()
-        pygame.draw.rect(screen, (255, 255, 255), card_rect)
-        draw_text(card.name, font, (0, 0, 0), screen, x + 10, y + 10, rotation)
-    else:
-        pygame.draw.rect(screen, (200, 200, 200), card_rect)
-        draw_text("Played", font, (255, 0, 0), screen, x + 10, y + 150)
+        image = pygame.transform.rotate(card.image, rotation)
+        image = pygame.transform.scale(image, (w,h))
+        screen.blit(image, card_rect)
 
 def draw_text(text, font, color, surface, x, y, rotation=0):
     textobj = font.render(text, True, color)

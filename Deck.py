@@ -14,12 +14,12 @@ def draw_action(player, opponent):
 
 class Deck:
     def get_draw_card():
-        return Card("Draw Card", cost=1, action=draw_action)
+        return Card("images/draw.png", "Draw Card", cost=1, action=draw_action)
 
     def __init__(self):
         self.cards = [
-            Card("Attack Card", cost=1, action=attack_action),
-            Card("Heal Card", cost=1, action=heal_action),
+            Card("images/attack.png", "Attack Card", cost=1, action=attack_action),
+            Card("images/heal.png", "Heal Card", cost=1, action=heal_action),
         ]
         random.shuffle(self.cards)
     
