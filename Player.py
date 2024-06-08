@@ -6,7 +6,11 @@ class Player:
         self.deck = Deck()
         self.points = 0
         self.health = 100
-        self.shield = 0
+        self.shielded = False
+        self.mirror = False
+
+        self.animate_health_function = None
+        self.animate_point_function = None
 
     def add_draws(self):
         self.hand = [Deck.get_draw_card() for _ in range(4)]
@@ -27,16 +31,35 @@ class Player:
 
     def add_points(self, points):
         self.points += points
+        self.animate_point_function((0,255,0))
+
+    def remove_points(self, points):
+        self.points -=points
+        self.animate_point_function((255,0,0))
 
     def attacked(self, hit_points):
+        if(not self.shielded):
+            self.health -=hit_points
+            self.animate_health_function((255,0,0))
+            if(self.health<=0):
+                print("Game over")
+                return True
+            return False
+        else:
+            self.animate_health_function((0,0,255))
+            self.shielded = False
+    def poisoned(self,hit_points):
         self.health -=hit_points
+        self.animate_health_function((255,0,0))
         if(self.health<=0):
             print("Game over")
             return True
         return False
-    
+
+
     def heal(self, heal_points):
         self.health +=heal_points
+        self.animate_health_function((0,255,0))        
         if(self.health>100):
             self.health = 100
         return False

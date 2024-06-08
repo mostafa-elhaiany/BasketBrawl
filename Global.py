@@ -15,6 +15,8 @@ player1 = Player("Player 1")
 player2 = Player("Player 2")
 
 
+p1_card_x = 65
+p2_card_x = 800
 card_width = 200
 card_height = 140
 card_offset = 150

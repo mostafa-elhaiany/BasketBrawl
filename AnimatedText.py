@@ -23,7 +23,9 @@ class AnimatedText:
         self.animation_start_time = pygame.time.get_ticks()
         self.grow_phase = True
 
-    def update(self):
+    def update(self, new_text = None):
+        if(new_text is not None):
+            self.text = new_text
         if self.animating:
             current_time = pygame.time.get_ticks()
             elapsed_time = current_time - self.animation_start_time

@@ -9,9 +9,9 @@ import Global
 artist = Artist(Global)
 
 # Draw initial hands
-for _ in range(4):
-    Global.player1.draw_card()
-    Global.player2.draw_card()
+# for _ in range(5):
+#     Global.player1.draw_card()
+#     Global.player2.draw_card()
 
 
 artist.draw_screen()

@@ -5,7 +5,10 @@ class Card:
         self.name = name
         self.cost = cost
         self.action = action
-        self.image = pygame.image.load(image_path)
+        if(image_path is not None):
+            self.image = pygame.image.load(image_path)
+        else:
+            self.image = None
         self.played = False  # New attribute to track if the card has been played
 
     def play(self, player, opponent):
