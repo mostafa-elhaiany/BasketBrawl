@@ -6,7 +6,7 @@ pygame.init()
 SCREEN_WIDTH, SCREEN_HEIGHT = 1080, 650
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Card Game")
+pygame.display.set_caption("BasketBrawl")
 
 font = pygame.font.SysFont(None, 36)
 
