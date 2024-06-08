@@ -23,6 +23,8 @@ class Player:
 
 
     def play_card(self, card_index, opponent):
+        if(card_index>=len(self.hand)):
+            return 
         cost = self.hand[card_index].cost
         if(self.points>=cost):
             self.points -= cost
