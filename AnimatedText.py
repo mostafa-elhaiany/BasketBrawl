@@ -1,15 +1,17 @@
 import pygame
 
 class AnimatedText:
-    def __init__(self, text, position, font_size=48, color=(255, 255, 255), animation_color=(255, 0, 0), animation_duration=1000):
+    def __init__(self, text, position, font_size=48, color=(255, 255, 255), rotation=0,animation_color=(255, 0, 0), animation_duration=1000):
         self.text = text
         self.position = position
         self.original_font_size = font_size
         self.color = color
+        self.rotation = rotation
         self.animation_color = animation_color
         self.animation_duration = animation_duration
         self.font = pygame.font.SysFont(None, self.original_font_size)
         self.text_surface = self.font.render(self.text, True, self.color)
+        self.text_surface = pygame.transform.rotate(self.text_surface, rotation)
         self.animation_start_time = None
         self.animating = False
         self.grow_phase = True
@@ -49,10 +51,15 @@ class AnimatedText:
             animated_color = (r, g, b)
 
             self.text_surface = self.font.render(self.text, True, animated_color)
+            self.text_surface = pygame.transform.rotate(self.text_surface, self.rotation)
+
         else:
             self.font = pygame.font.SysFont(None, self.original_font_size)
             self.text_surface = self.font.render(self.text, True, self.color)
+            self.text_surface = pygame.transform.rotate(self.text_surface, self.rotation)
+
 
     def draw(self, surface):
         text_rect = self.text_surface.get_rect(center=self.position)
+        text_rect.topleft = self.position
         surface.blit(self.text_surface, text_rect)
