@@ -1,49 +1,59 @@
 1. Attack Card
 
     Price: 1 point
-    Description: Activate this card to cause 1 damage to the opponent.
+    Description: Activate to cause 1 damage to the opponent.
 
 2. Draw Card
 
     Price: 1 points
-    Description: Activate this card to draw a card from the deck.
+    Description: Activate to draw a card from the deck.
 
 3. Heal Card
 
     Price: 2 points
-    Description: Activate this card to gain 2 health.
+    Description: Activate to gain 2 health.
 
 4. Shield Card
 
     Price: 3 points
-    Description: Activate this card to block the next incoming attack.
+    Description: Activate to block the next incoming attack.
 
 5. Poison Card
 
     Price: 4 points
-    Description: Activate this card to cause 2 damage to the opponent, bypassing shields.
+    Description: Activate to cause 2 damage to the opponent, bypassing shields.
 
 6. Double Attack Card
 
     Price: 3 points
-    Description: Activate this card to cause 2 damage to the opponent, the first attack breaks the shield if there was one.
+    Description: Activate to cause 2 damage to the opponent, the first attack breaks the shield if there was one.
 
 7. Energy Boost Card
 
     Price: 2 points
-    Description: Activate this card to gain 3 points immediately.
+    Description: Activate to gain 3 points immediately.
 
 8. Reflect Card
 
     Price: 4 points
-    Description: Activate this card to reflect the next incoming attack back at the attacker.
+    Description: Activate to reflect the next incoming attack back at the attacker.
 
 9. Sacrifice Card
 
     Price: 1 point
-    Description: Activate this card to lose 3 health but gain 5 points.
+    Description: Activate to lose 3 health but gain 5 points.
 
 10. Steal Card
 
     Price: 4 points
-    Description: Activate this card to steal 2 points from your opponent.
+    Description: Activate to steal 2 points from your opponent.
+
+11. Redbull Energy Boost Card
+
+    Price: 2 points
+    Description: Activate to gain 3 points immediately.
+
+12. Dodge Card
+
+    Price: 3 points
+    Description: Activate to avoid next incoming attack from the opponent

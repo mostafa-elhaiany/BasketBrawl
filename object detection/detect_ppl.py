@@ -4,7 +4,7 @@ import cv2
 # Load YOLOv5 nano model (lightweight version)
 model = torch.hub.load('ultralytics/yolov5', 'yolov5n')
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 frame_skip = 2
 frame_count = 0
 
