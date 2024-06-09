@@ -2,7 +2,11 @@ from Card import Card
 import random
 
 def attack_action(player, opponent):
-    death_blow = opponent.attacked(1)
+    if(opponent.mirror):
+        opponent.mirror = False
+        death_blow = player.attacked(1)
+    else:
+        death_blow = opponent.attacked(1)
 
 def heal_action(player, opponent):
     player.heal(2)
@@ -18,7 +22,11 @@ def poison_action(player, opponent):
     death_blow = opponent.poisoned(2)
 
 def double_attack_action(player, opponent):
-    opponent.attacked(1)
+    if(opponent.mirror):
+        opponent.mirror = False
+        player.attacked(1)
+    else:
+        opponent.attacked(1)        
     death_blow = opponent.attacked(1)
 
 def energy_boost_action(player, opponent):
@@ -43,13 +51,13 @@ class Deck:
         self.cards = [
             Card("images/attack.png", "Attack", cost=1, action=attack_action),
             Card("images/heal.png", "Heal", cost=2, action=heal_action),
-            Card(None,"Shield", cost=3, action=shield_action),
-            Card(None, "Poison", cost=4, action=poison_action),
-            Card(None, "Double Attack", cost=3, action=double_attack_action),
-            Card(None, "Energy Boost", cost=2, action=energy_boost_action),
-            # Card(None,"Reflect Action", cost=4, action=reflect_action),
-            Card(None,"Sacrifice", cost=1, action=sacrifice_action),
-            Card(None,"Steal", cost=4, action=steal_action),
+            Card("images/shield.png","Shield", cost=3, action=shield_action),
+            Card("images/poison.png", "Poison", cost=4, action=poison_action),
+            Card("images/double attack.png", "Double Attack", cost=3, action=double_attack_action),
+            Card("images/energy boost.png", "Energy Boost", cost=2, action=energy_boost_action),
+            Card("images/reflect.png","Reflect Action", cost=4, action=reflect_action),
+            Card("images/sacrifice.png","Sacrifice", cost=1, action=sacrifice_action),
+            Card("images/steal.png","Steal", cost=4, action=steal_action),
         ]
         random.shuffle(self.cards)
     

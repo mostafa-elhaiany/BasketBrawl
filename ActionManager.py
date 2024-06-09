@@ -9,31 +9,40 @@ def handle_actions(Global):
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:  # Left mouse button
                 handle_click(Global.player1, Global.player2, event.pos, Global)
+        # keyboard controls
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_q:
                 Global.player1.add_points(1)
-            if event.key == pygame.K_a:
-                handle_keyboard_control(Global.player1, Global.player2, 0)
-            if event.key == pygame.K_s:
-                handle_keyboard_control(Global.player1, Global.player2, 1)
-            if event.key == pygame.K_d:
-                handle_keyboard_control(Global.player1, Global.player2, 2)
-            if event.key == pygame.K_f:
-                handle_keyboard_control(Global.player1, Global.player2, 3)
-
             if event.key == pygame.K_p:
                 Global.player2.add_points(1)
-            if event.key == pygame.K_l:
-                handle_keyboard_control(Global.player2, Global.player1, 0)
-            if event.key == pygame.K_k:
-                handle_keyboard_control(Global.player2, Global.player1, 1)
-            if event.key == pygame.K_j:
-                handle_keyboard_control(Global.player2, Global.player1, 2)
-            if event.key == pygame.K_h:
-                handle_keyboard_control(Global.player2, Global.player1, 3)
+
+            handle_keyboard_control(event.key, Global.player1, Global.player2)
+
+            if event.key == pygame.K_v: # activate sudden death
+                Global.player1.health=0
+                Global.player2.health=0
+
+def handle_keyboard_control(key, player1, player2):
+    if key == pygame.K_a:
+        play_card_on_click(player1, player2, 0)
+    if key == pygame.K_s:
+        play_card_on_click(player1, player2, 1)
+    if key == pygame.K_d:
+        play_card_on_click(player1, player2, 2)
+    if key == pygame.K_f:
+        play_card_on_click(player1, player2, 3)
+
+    if key == pygame.K_l:
+        play_card_on_click(player2, player1, 0)
+    if key == pygame.K_k:
+        play_card_on_click(player2, player1, 1)
+    if key == pygame.K_j:
+        play_card_on_click(player2, player1, 2)
+    if key == pygame.K_h:
+        play_card_on_click(player2, player1, 3)
 
 
-def handle_keyboard_control(player, opponent, idx):
+def play_card_on_click(player, opponent, idx):
     player.play_card(idx, opponent)
 
 def handle_click(player, opponent, pos, Global):

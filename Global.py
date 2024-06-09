@@ -4,6 +4,7 @@ from Player import Player
 pygame.init()
 
 SCREEN_WIDTH, SCREEN_HEIGHT = 1080, 650
+GAMEOVER = False
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("BasketBrawl")

@@ -5,7 +5,7 @@ class Player:
         self.hand = []
         self.deck = Deck()
         self.points = 0
-        self.health = 100
+        self.health = 10
         self.shielded = False
         self.mirror = False
 
