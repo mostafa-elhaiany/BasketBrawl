@@ -1,12 +1,17 @@
 from Card import Card
 import random
 
+def dodge_action(player, opponent):
+    player.dodge=True
+
 def attack_action(player, opponent):
     if(opponent.mirror):
         opponent.mirror = False
-        death_blow = player.attacked(1)
+        player.attacked(1)
+    elif(opponent.dodge):
+        opponent.dodge = False
     else:
-        death_blow = opponent.attacked(1)
+        opponent.attacked(1)
 
 def heal_action(player, opponent):
     player.heal(2)
@@ -19,15 +24,21 @@ def shield_action(player, opponent):
     player.shielded = True
 
 def poison_action(player, opponent):
-    death_blow = opponent.poisoned(2)
+    if(opponent.dodge):
+        opponent.dodge = False
+    else:
+        opponent.poisoned(2)
 
 def double_attack_action(player, opponent):
-    if(opponent.mirror):
-        opponent.mirror = False
-        player.attacked(1)
+    if(opponent.dodge):
+        opponent.dodge = False
     else:
-        opponent.attacked(1)        
-    death_blow = opponent.attacked(1)
+        if(opponent.mirror):
+            opponent.mirror = False
+            player.attacked(1)
+        else:
+            opponent.attacked(1)        
+        opponent.attacked(1)
 
 def energy_boost_action(player, opponent):
     player.add_points(3)
@@ -55,6 +66,8 @@ class Deck:
             Card("images/poison.png", "Poison", cost=4, action=poison_action),
             Card("images/double attack.png", "Double Attack", cost=3, action=double_attack_action),
             Card("images/energy boost.png", "Energy Boost", cost=2, action=energy_boost_action),
+            Card("images/energy boost_redbull.png", "RedBull", cost=2, action=energy_boost_action),
+            Card("images/dodge.png", "Nike Jordans", cost=3, action=dodge_action),
             Card("images/reflect.png","Reflect Action", cost=4, action=reflect_action),
             Card("images/sacrifice.png","Sacrifice", cost=1, action=sacrifice_action),
             Card("images/steal.png","Steal", cost=4, action=steal_action),

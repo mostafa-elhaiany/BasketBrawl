@@ -11,6 +11,8 @@ def handle_actions(Global):
                 handle_click(Global.player1, Global.player2, event.pos, Global)
         # keyboard controls
         elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                Global.POLLING = not Global.POLLING
             if event.key == pygame.K_q:
                 Global.player1.add_points(1)
             if event.key == pygame.K_p:

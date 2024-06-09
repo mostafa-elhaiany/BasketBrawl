@@ -8,6 +8,7 @@ class Player:
         self.health = 10
         self.shielded = False
         self.mirror = False
+        self.dodge = False
 
         self.animate_health_function = None
         self.animate_point_function = None

@@ -10,12 +10,48 @@ class Artist:
         self.player2_health = None
         self.mid_text = None
         self.background_image = pygame.image.load("images/background.png")
-
+        self.poll_text = None
+        self.poll_values = None
+        self.poll_active = False
+        self.prev_values = [0,0]
     
     def draw_mid_text(self, text, color):
         self.mid_text = self.draw_text(text, (255, 255, 255), self.Global.SCREEN_WIDTH//2 - 200, self.Global.SCREEN_HEIGHT//2, 0,72)
         self.mid_text.animate(color)
         
+
+    def enable_poll(self):
+        self.poll_active = True
+        self.poll_text = self.draw_text("Poll Active", (255, 255, 255), self.Global.SCREEN_WIDTH//2 - 150, self.Global.SCREEN_HEIGHT//2-100, 0,72)
+        self.poll_text.animate((0,255,0))
+
+        self.poll_values = [
+            self.draw_text("0", (255, 255, 255), self.Global.SCREEN_WIDTH//2 + 90, self.Global.SCREEN_HEIGHT//2, 0,60),
+            self.draw_text("0", (255, 255, 255), self.Global.SCREEN_WIDTH//2 - 250, self.Global.SCREEN_HEIGHT//2, 0,60)
+        ]
+        self.poll_values[0].animate((50,255,50))
+        self.poll_values[1].animate((50,255,50))
+
+
+    def update_poll(self,poller):
+        votes = poller.votes
+        if(self.Global.POLLING):
+            self.poll_text.update()
+            self.poll_text.draw(self.Global.screen)
+
+            self.poll_values[0].update(f"votes: {votes[0]}")
+            self.poll_values[0].draw(self.Global.screen)
+            self.poll_values[1].update(f"votes: {votes[1]}")
+            self.poll_values[1].draw(self.Global.screen)
+            if(votes[0] != self.prev_values[0]):
+                self.poll_values[0].animate()
+            if(votes[1] != self.prev_values[1]):
+                self.poll_values[1].animate()
+
+
+            self.prev_values = votes
+
+
 
     def draw_screen(self):
         self.Global.screen.fill((0, 0, 0))
@@ -77,8 +113,8 @@ class Artist:
             self.mid_text.draw(self.Global.screen)
 
 
-            # flipped_screen = pygame.transform.flip(Global.screen, True, True)
-            # Global.screen.blit(flipped_screen, (0, 0))
+        flipped_screen = pygame.transform.flip(self.Global.screen, True, True)
+        self.Global.screen.blit(flipped_screen, (0, 0))
 
 
 
