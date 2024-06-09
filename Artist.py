@@ -8,8 +8,13 @@ class Artist:
         self.player2_points = None
         self.player1_health = None
         self.player2_health = None
+        self.mid_text = None
         self.background_image = pygame.image.load("images/background.png")
 
+    
+    def draw_mid_text(self, text, color):
+        self.mid_text = self.draw_text(text, (255, 255, 255), self.Global.SCREEN_WIDTH//2 - 200, self.Global.SCREEN_HEIGHT//2, 0,72)
+        self.mid_text.animate(color)
         
 
     def draw_screen(self):
@@ -47,24 +52,29 @@ class Artist:
             self.player2_health.update(f'Health: {self.Global.player2.health}')
             self.player2_health.draw(self.Global.screen)
             
-        # Draw player 1 hand
-        if(len(self.Global.player1.hand)!=0):
-            y_offset = 20
-            for card in self.Global.player1.hand:
-                self.draw_card(card, self.Global.p1_card_x, y_offset, self.Global.card_width, self.Global.card_height, -90)
-                y_offset += self.Global.card_offset
-        else:
-            self.Global.player1.add_draws()
+        if(not self.Global.GAMEOVER):
+            # Draw player 1 hand
+            if(len(self.Global.player1.hand)!=0):
+                y_offset = 20
+                for card in self.Global.player1.hand:
+                    self.draw_card(card, self.Global.p1_card_x, y_offset, self.Global.card_width, self.Global.card_height, -90)
+                    y_offset += self.Global.card_offset
+            else:
+                self.Global.player1.add_draws()
 
-        # Draw player 2 hand
-        if(len(self.Global.player2.hand)!=0):
-            y_offset = 20
-            for card in self.Global.player2.hand:
-                self.draw_card(card, self.Global.p2_card_x, y_offset, self.Global.card_width, self.Global.card_height, 90)
-                y_offset += self.Global.card_offset
-        else:
-            self.Global.player2.add_draws()
+            # Draw player 2 hand
+            if(len(self.Global.player2.hand)!=0):
+                y_offset = 20
+                for card in self.Global.player2.hand:
+                    self.draw_card(card, self.Global.p2_card_x, y_offset, self.Global.card_width, self.Global.card_height, 90)
+                    y_offset += self.Global.card_offset
+            else:
+                self.Global.player2.add_draws()
 
+
+        if(self.mid_text is not None):
+            self.mid_text.update()
+            self.mid_text.draw(self.Global.screen)
 
 
             # flipped_screen = pygame.transform.flip(Global.screen, True, True)
@@ -84,8 +94,8 @@ class Artist:
                 pygame.draw.rect(self.Global.screen, (255, 255, 255), card_rect)
                 self.draw_text(card.name, (0, 0, 0), x + 10, y + 10, 0)
 
-    def draw_text(self,text, color, x, y, rotation):
-        animated_text = AnimatedText(text, (x,y),42,color, rotation)
+    def draw_text(self,text,color, x, y, rotation, font_size = 42):
+        animated_text = AnimatedText(text, (x,y),font_size,color, rotation)
         animated_text.update()
         animated_text.draw(self.Global.screen)
         return animated_text
