@@ -26,7 +26,7 @@
 6. Double Attack Card
 
     Price: 3 points
-    Description: Activate this card to cause 2 damage to the opponent.
+    Description: Activate this card to cause 2 damage to the opponent, the first attack breaks the shield if there was one.
 
 7. Energy Boost Card
 
